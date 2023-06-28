@@ -1,0 +1,3 @@
+# Project exclude paths
+/fhir-spring-client/target/
+/fhir-spring-server/target/

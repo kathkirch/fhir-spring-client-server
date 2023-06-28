@@ -1,0 +1,33 @@
+@startuml
+
+left to right direction
+
+actor Benutzer as "Benutzer"
+actor Externer as "Externer"
+
+rectangle "Patienten- und Beobachtungsverwaltung" {
+    usecase "Patient erstellen" as (Patient erstellen)
+    usecase "Patient suchen" as (Patient suchen)
+    usecase "Beobachtung erstellen" as (Beobachtung erstellen)
+    usecase "Beobachtung suchen" as (Beobachtung suchen)
+    (Patient erstellen) --> (Patient suchen)
+    (Beobachtung erstellen) --> (Beobachtung suchen)
+    (Patient suchen) <-- (Benutzer)
+    (Beobachtung suchen) <-- (Benutzer)
+    (Patient suchen) <-- (Externer)
+    (Beobachtung suchen) <-- (Externer)
+}
+
+actor "Benutzer" {
+    usecase "Kontaktdaten aktualisieren" as (Kontaktdaten aktualisieren)
+    usecase "Beobachtung lesen" as (Beobachtung lesen)
+    (Patient suchen) --> (Kontaktdaten aktualisieren)
+    (Beobachtung suchen) --> (Beobachtung lesen)
+}
+
+Benutzer --> (Patient suchen)
+Externer --> (Patient suchen)
+
+@enduml
+
+
